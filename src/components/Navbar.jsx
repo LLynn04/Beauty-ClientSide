@@ -1,32 +1,43 @@
-import React from 'react';
+import React from "react";
 
-const Navbar = () => {
-  return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <div className="text-2xl font-bold text-blue-600">
-          HotelName
-        </div>
-
-        {/* Navigation Links */}
-        <ul className="hidden md:flex space-x-8 text-gray-700 font-medium">
-          <li><a href="/" className="hover:text-blue-600">Home</a></li>
-          <li><a href="/about" className="hover:text-blue-600">About</a></li>
-          <li><a href="/rooms" className="hover:text-blue-600">Rooms</a></li>
-          <li><a href="/contact" className="hover:text-blue-600">Contact</a></li>
-        </ul>
-
-        {/* Mobile Menu Icon (optional) */}
-        <div className="md:hidden">
-          <button className="text-gray-600 focus:outline-none">
-            {/* Add a menu icon here if you want */}
-            ☰
-          </button>
-        </div>
+const Navbar = () => (
+ <nav className=" bg-black/60 backdrop-blur-md shadow-lg w-full">
+  <div className="w-full max-w-screen-xl sticky top-4 bg-white mx-auto px-6 py-4 flex items-center rounded-full justify-between ">
+      {/* Logo */}
+      <div className="flex-shrink-0">
+        <span className="text-2xl font-bold text-violet-500 tracking-wide">
+          SBeauty
+        </span>
       </div>
-    </nav>
-  );
-};
+      {/* Links */}
+      <div className="flex space-x-8">
+        <a
+          href="#"
+          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
+        >
+          Home
+        </a>
+        <a
+          href="#"
+          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
+        >
+          About
+        </a>
+        <a
+          href="#"
+          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
+        >
+          Services
+        </a>
+        <a
+          href="#"
+          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
+        >
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+);
 
 export default Navbar;
