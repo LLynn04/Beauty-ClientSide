@@ -1,43 +1,123 @@
-import React from "react";
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
 
-const Navbar = () => (
- <nav className=" bg-black/60 backdrop-blur-md shadow-lg w-full">
-  <div className="w-full max-w-screen-xl sticky top-4 bg-white mx-auto px-6 py-4 flex items-center rounded-full justify-between ">
-      {/* Logo */}
-      <div className="flex-shrink-0">
-        <span className="text-2xl font-bold text-violet-500 tracking-wide">
-          SBeauty
-        </span>
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  return (
+    <nav className="w-full sticky top-4 z-50">
+      {/* Constrain navbar to exactly 1280px with no extra padding */}
+      <div className="w-full max-w-[1280px] mx-auto">
+        <div className="bg-white/5 backdrop-blur-md shadow-lg shadow-violet-500/30 rounded-full px-6 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <div className="flex-shrink-0">
+            <span className="text-xl sm:text-2xl font-bold text-violet-500 tracking-wide">
+              SBeauty
+            </span>
+          </div>
+
+          {/* Desktop Links */}
+          <div className="hidden lg:flex space-x-8">
+            <a
+              href="#"
+              className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold"
+            >
+              Home
+            </a>
+            <a
+              href="#"
+              className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold"
+            >
+              About
+            </a>
+            <a
+              href="#"
+              className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold"
+            >
+              Services
+            </a>
+            <a
+              href="#"
+              className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold"
+            >
+              Contact
+            </a>
+          </div>
+
+          {/* Desktop Buttons */}
+          <div className="hidden md:flex space-x-4">
+            <button className="px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold">
+              Sign In
+            </button>
+            <button className="px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow">
+              Sign Up
+            </button>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            onClick={toggleMenu}
+            className="lg:hidden text-white hover:text-violet-500 transition-colors duration-200"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        {isMenuOpen && (
+          <div className="lg:hidden mt-4">
+            <div className="bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-lg shadow-violet-500/20 px-6 py-6">
+              {/* Mobile Links */}
+              <div className="flex flex-col space-y-4 mb-6">
+                <a
+                  href="#"
+                  className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold py-2"
+                  onClick={toggleMenu}
+                >
+                  Home
+                </a>
+                <a
+                  href="#"
+                  className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold py-2"
+                  onClick={toggleMenu}
+                >
+                  About
+                </a>
+                <a
+                  href="#"
+                  className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold py-2"
+                  onClick={toggleMenu}
+                >
+                  Services
+                </a>
+                <a
+                  href="#"
+                  className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold py-2"
+                  onClick={toggleMenu}
+                >
+                  Contact
+                </a>
+              </div>
+
+              {/* Mobile Buttons */}
+              <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
+                <button className="w-full sm:w-auto px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold">
+                  Sign In
+                </button>
+                <button className="w-full sm:w-auto px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow">
+                  Sign Up
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
-      {/* Links */}
-      <div className="flex space-x-8">
-        <a
-          href="#"
-          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
-        >
-          Home
-        </a>
-        <a
-          href="#"
-          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
-        >
-          About
-        </a>
-        <a
-          href="#"
-          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
-        >
-          Services
-        </a>
-        <a
-          href="#"
-          className="text-white hover:text-violet-400 transition-colors duration-200 font-semibold"
-        >
-          Contact
-        </a>
-      </div>
-    </div>
-  </nav>
-);
+    </nav>
+  );
+};
 
 export default Navbar;
