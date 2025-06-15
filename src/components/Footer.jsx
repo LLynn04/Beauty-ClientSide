@@ -3,7 +3,7 @@ import { Facebook, Instagram, Youtube, Send } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className=" hidden md:block display:none bg-white text-gray-800 py-10 ">
+    <footer className=" hidden md:block display:none bg-black text-white py-10 ">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
         {/* Product */}
         <div>

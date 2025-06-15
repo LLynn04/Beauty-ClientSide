@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Sparkles, Droplets, Flower2, Palette, Heart, Plus } from "lucide-react";
 
 const Categories = () => {
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [setHoveredCategory] = useState(null);
 
   const categories = [
     {
@@ -52,7 +52,7 @@ const Categories = () => {
   return (
     <section className="w-full pb-[50px] py-12 bg-black">
       <div className="text-center mb-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <h2 className="text-3xl font-bold text-white mb-4">
           Shop by Category
         </h2>
         <p className="text-gray-400 text-base">
