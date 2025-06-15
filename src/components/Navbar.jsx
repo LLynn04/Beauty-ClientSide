@@ -1,11 +1,30 @@
 import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Loader2 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignInLoading, setIsSignInLoading] = useState(false);
+  const [isSignUpLoading, setIsSignUpLoading] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignInClick = () => {
+    setIsSignInLoading(true);
+    // The Link will handle navigation, we just show loading for visual feedback
+    setTimeout(() => {
+      setIsSignInLoading(false);
+    }, 300); // Short delay for visual feedback
+  };
+
+  const handleSignUpClick = () => {
+    setIsSignUpLoading(true);
+    // The Link will handle navigation, we just show loading for visual feedback
+    setTimeout(() => {
+      setIsSignUpLoading(false);
+    }, 300); // Short delay for visual feedback
   };
 
   return (
@@ -50,12 +69,22 @@ const Navbar = () => {
 
           {/* Desktop Buttons */}
           <div className="hidden md:flex space-x-4">
-            <button className="px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold">
+            <Link
+              to="/sign-in"
+              onClick={handleSignInClick}
+              className="px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {isSignInLoading && <Loader2 size={16} className="animate-spin" />}
               Sign In
-            </button>
-            <button className="px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow">
+            </Link>
+            <Link
+              to="/sign-up"
+              onClick={handleSignUpClick}
+              className="px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            >
+              {isSignUpLoading && <Loader2 size={16} className="animate-spin" />}
               Sign Up
-            </button>
+            </Link>
           </div>
 
           {/* Mobile Menu Button */}
@@ -103,14 +132,30 @@ const Navbar = () => {
                 </a>
               </div>
 
-              {/* Mobile Buttons */}
-              <div className="flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
-                <button className="w-full sm:w-auto px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold">
+              {/* Mobile Buttons - Fixed the CSS classes */}
+              <div className="flex flex-col space-y-3 md:hidden">
+                <Link
+                  to="/sign-in"
+                  onClick={() => {
+                    handleSignInClick();
+                    toggleMenu();
+                  }}
+                  className="w-full text-center px-4 py-2 rounded-full text-white bg-transparent border border-violet-500 hover:bg-violet-500 hover:text-black transition font-semibold flex items-center justify-center gap-2"
+                >
+                  {isSignInLoading && <Loader2 size={16} className="animate-spin" />}
                   Sign In
-                </button>
-                <button className="w-full sm:w-auto px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow">
+                </Link>
+                <Link
+                  to="/sign-up"
+                  onClick={() => {
+                    handleSignUpClick();
+                    toggleMenu();
+                  }}
+                  className="w-full text-center px-4 py-2 rounded-full text-white bg-violet-600 hover:bg-violet-700 transition font-semibold shadow flex items-center justify-center gap-2"
+                >
+                  {isSignUpLoading && <Loader2 size={16} className="animate-spin" />}
                   Sign Up
-                </button>
+                </Link>
               </div>
             </div>
           </div>
