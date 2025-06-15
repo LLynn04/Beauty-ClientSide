@@ -1,5 +1,5 @@
 import React from "react";
-import ProductList from "../Product/ProductList";
+import ProductList from "../Product/ProductList"; // Adjust path if needed
 
 const AllProducts = () => {
   const allProducts = [
@@ -43,13 +43,13 @@ const AllProducts = () => {
       name: "Moisturizing Cream",
       description: "24-hour hydration for dry skin.",
       price: 28.5,
-      image: "https://example.com/moisturizer.jpg",
+      image: "https://www.dior.com/on/demandware.static/-/Library-Sites-DiorSharedLibrary/default/dw3dbe1533/images/beauty/03-SKINCARE/2023/Skincare-map/CaptureTotale_S123_Duo_Serum_Creme_1850x2000.jpg",
     },
     {
       name: "Eye Cream",
       description: "Reduces dark circles and puffiness.",
       price: 32.0,
-      image: "https://example.com/eye-cream.jpg",
+      image: "https://stonhartbeauty.com/cdn/shop/products/Vital-C-Hydrating-Facial-Cleanser_394x_b19dfe6a-ef1e-4560-95db-f399adbe08ed_1600x.jpg?v=1647276726",
     },
   ];
 
@@ -59,7 +59,7 @@ const AllProducts = () => {
         <h2 className="text-3xl font-bold text-white mb-12 text-center">
           All <span className="text-violet-400">Products</span>
         </h2>
-        <ProductList products={allProducts} />
+        <ProductList products={allProducts} scrollable={false} />
       </div>
     </section>
   );

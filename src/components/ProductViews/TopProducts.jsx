@@ -44,10 +44,10 @@ const TopProduct = () => {
   return (
     <section className="bg-black py-12">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-3xl font-bold text-white mb-12 text-center">
-           Top Products
+        <h2 className="text-3xl font-bold text-white mb-4 text-center">
+          Top Products
         </h2>
-        <ProductList products={topProducts} />
+        <ProductList products={topProducts} scrollable />
       </div>
     </section>
   );

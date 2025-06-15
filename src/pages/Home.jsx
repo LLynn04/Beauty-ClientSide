@@ -4,6 +4,7 @@ import Categories from '../components/ProductViews/Categories'
 import TopProduct from '../components/ProductViews/TopProducts'
 import PromotionBanner from '../components/PromotinBanner'
 import AllProducts from '../components/ProductViews/AllProducts'
+import TipSkincare from '../components/TipSkincare'
 
 const Home = () => {
   return (
@@ -31,6 +32,11 @@ const Home = () => {
       {/* all products */}
       <section>
         <AllProducts />
+      </section>
+
+      {/* skincare tips */}
+      <section>
+        <TipSkincare />
       </section>
       
     </main>
