@@ -48,7 +48,7 @@ const Navbar = () => {
               Home
             </a>
             <a
-              href="#"
+              href="/about"
               className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold"
             >
               About
@@ -110,7 +110,7 @@ const Navbar = () => {
                   Home
                 </a>
                 <a
-                  href="#"
+                  href="/about"
                   className="text-white hover:text-violet-500 transition-colors duration-200 font-semibold py-2"
                   onClick={toggleMenu}
                 >
