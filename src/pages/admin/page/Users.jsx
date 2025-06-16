@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Products = () => {
+const Users = () => {
   return (
     <div>
-      name 1
+      
     </div>
   )
 }
 
-export default Products
+export default Users
