@@ -19,7 +19,8 @@ const ProductCard = ({ product }) => {
     return stars;
   };
 
-  const { id, brand, images, description, price } = product;
+  const { id, images, description, price } = product;
+  const name = product.brand || product.fregrance || product.title || "Unnamed";
 
   return (
     <div
@@ -29,7 +30,7 @@ const ProductCard = ({ product }) => {
       <div className="w-full h-52 bg-zinc-800 rounded-xl overflow-hidden mb-4 flex items-center justify-center relative">
         <img
           src={Array.isArray(images) ? images[0] : images}
-          alt={brand}
+          alt={name}
           className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
         />
         <span className="absolute top-2 right-2 bg-violet-600 text-xs px-2 py-0.5 rounded-full font-medium shadow-md">
@@ -38,16 +39,24 @@ const ProductCard = ({ product }) => {
       </div>
 
       <div className="space-y-2">
-        <h3 className="text-xl font-bold text-white tracking-wide">{brand}</h3>
+        <h3 className="text-xl font-bold text-white tracking-wide">{name}</h3>
         <p className="text-gray-400 text-sm line-clamp-2">{description}</p>
 
         <div className="flex items-center space-x-1 mt-2">{renderStars()}</div>
 
         <div className="flex justify-between items-center mt-4">
-          <Button variant="gradient" size="sm" className="bg-violet-700 hover:bg-violet-800">
+          <Button
+            variant="gradient"
+            size="sm"
+            className="bg-violet-700 hover:bg-violet-800"
+          >
             View
           </Button>
-          <Button variant="primary" size="sm" className="text-black hover:bg-gray-100">
+          <Button
+            variant="primary"
+            size="sm"
+            className="text-black hover:bg-gray-100"
+          >
             Add to Cart
           </Button>
         </div>

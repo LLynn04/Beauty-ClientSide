@@ -1,19 +1,24 @@
 import React from "react";
 import ProductList from "../Product/ProductList"; // adjust path
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const TopProduct = () => {
-    const [product, setProducts] = useState([]);
+  const [product, setProducts] = useState([]);
+  const url = "https://dummyjson.com/products";
 
   useEffect(() => {
     const fetchData = async () => {
-      const url = "https://dummyjson.com/products";
+      
       try {
-        const response = await fetch(url);
-        const data = await response.json();
-
-        const topRated = data.products.filter((p) => p.rating >= 3);
-        setProducts(topRated);
+        const {data} = await axios(url)
+        const topRated = data.products
+        .filter((p) => p.rating >= 3)
+        .map((item) => ({
+          ...item,
+          name:item.brand || item.fregrance || item.title || "unnamed" ,
+        }))
+        setProducts(topRated)
       } catch (error) {
         console.error("Failed to fetch products:", error);
       }
