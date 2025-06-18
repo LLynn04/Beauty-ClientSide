@@ -9,7 +9,6 @@ const TopProduct = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      
       try {
         const {data} = await axios(url)
         const topRated = data.products

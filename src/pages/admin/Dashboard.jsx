@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import DashboardView from "../admin/page/DashboardView";
-import Products from "../admin/page/Products";
-import AddProducts from "../admin/page/AddProducts";
-import Users from "./page/Users";
-
+import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import {
   FaBars,
   FaTimes,
@@ -16,35 +12,11 @@ import {
 
 const Dashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  const [activePage, setActivePage] = useState("dashboard");
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const renderContent = () => {
-    switch (activePage) {
-      case "dashboard":
-        return <DashboardView />;
-      case "users":
-        return (
-          <h2 className="text-2xl text-white">
-            <Users />
-          </h2>
-        );
-      case "products":
-        return (
-          <h2 className="text-2xl text-white">
-            <Products />
-          </h2>
-        );
-      case "Add Products":
-        return (
-          <h2 className="text-2xl text-white">
-            <AddProducts />
-          </h2>
-        );
-      case "settings":
-        return <h2 className="text-2xl text-white">Settings</h2>;
-      default:
-        return <DashboardView />;
-    }
+  const goTo = (path) => {
+    navigate(`/admin/${path}`);
   };
 
   return (
@@ -69,36 +41,36 @@ const Dashboard = () => {
             icon={<FaChartBar />}
             label="Dashboard"
             open={sidebarOpen}
-            active={activePage === "dashboard"}
-            onClick={() => setActivePage("dashboard")}
+            active={location.pathname === "/admin"}
+            onClick={() => navigate("/admin")}
           />
           <NavItem
             icon={<FaUsers />}
             label="Users"
             open={sidebarOpen}
-            active={activePage === "users"}
-            onClick={() => setActivePage("users")}
+            active={location.pathname === "/admin/users"}
+            onClick={() => goTo("users")}
           />
           <NavItem
             icon={<FaBoxOpen />}
             label="Products"
             open={sidebarOpen}
-            active={activePage === "products"}
-            onClick={() => setActivePage("products")}
+            active={location.pathname === "/admin/products"}
+            onClick={() => goTo("products")}
           />
           <NavItem
             icon={<FaBoxOpen />}
             label="Add Products"
             open={sidebarOpen}
-            active={activePage === "Add Products"}
-            onClick={() => setActivePage("Add Products")}
+            active={location.pathname === "/admin/AddProducts"}
+            onClick={() => goTo("AddProducts")}
           />
           <NavItem
             icon={<FaCog />}
             label="Settings"
             open={sidebarOpen}
-            active={activePage === "settings"}
-            onClick={() => setActivePage("settings")}
+            active={location.pathname === "/admin/settings"}
+            onClick={() => goTo("settings")}
           />
         </nav>
 
@@ -124,7 +96,9 @@ const Dashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 sm:p-10">{renderContent()}</main>
+      <main className="flex-1 p-6 sm:p-10">
+        <Outlet />
+      </main>
     </div>
   );
 };

@@ -6,19 +6,47 @@ const AddProducts = () => {
     description: "",
     price: "",
     category: "",
+    image: null,
   });
 
+  const [preview, setPreview] = useState(null);
+
   const handleChange = (e) => {
+    const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData((prev) => ({
+        ...prev,
+        image: file,
+      }));
+      setPreview(URL.createObjectURL(file));
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // For now, just log the data
+    console.log("Submitted product:", formData);
+
     alert(`🎉 Product Created:\nName: ${formData.name}`);
-    setFormData({ name: "", description: "", price: "", category: "" });
+
+    // Reset
+    setFormData({
+      name: "",
+      description: "",
+      price: "",
+      category: "",
+      image: null,
+    });
+    setPreview(null);
   };
 
   return (
@@ -80,6 +108,23 @@ const AddProducts = () => {
                 className="w-full px-4 py-3 rounded-xl bg-gray-800/80 border border-gray-700 text-white placeholder-gray-400 focus:ring-2 focus:ring-violet-500 focus:outline-none transition-all"
               />
             </div>
+          </div>
+
+          <div>
+            <label className="block mb-2 text-sm font-semibold tracking-wide">Product Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full text-white bg-gray-800/80 border border-gray-700 rounded-xl p-2 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-violet-600 file:text-white hover:file:bg-violet-700"
+            />
+            {preview && (
+              <img
+                src={preview}
+                alt="Preview"
+                className="mt-4 rounded-xl w-full h-52 object-cover border border-gray-700 shadow-md"
+              />
+            )}
           </div>
 
           <button
