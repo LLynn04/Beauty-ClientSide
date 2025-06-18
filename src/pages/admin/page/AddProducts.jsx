@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useState } from "react";
 
 const AddProducts = () => {
@@ -10,6 +11,7 @@ const AddProducts = () => {
   });
 
   const [preview, setPreview] = useState(null);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,15 +32,32 @@ const AddProducts = () => {
     }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const url = "https://dummyjson.com/products";
 
-    // For now, just log the data
-    console.log("Submitted product:", formData);
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  try {
+    const form = new FormData();
+    form.append("name", formData.name);
+    form.append("description", formData.description);
+    form.append("price", formData.price);
+    form.append("category", formData.category);
+    if (formData.image) {
+      form.append("image", formData.image);
+    }
+
+    const { data } = await axios.post(url, form, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
+
+    console.log(data);
 
     alert(`🎉 Product Created:\nName: ${formData.name}`);
 
-    // Reset
+    // Reset form
     setFormData({
       name: "",
       description: "",
@@ -47,7 +66,12 @@ const AddProducts = () => {
       image: null,
     });
     setPreview(null);
-  };
+  } catch (error) {
+    console.log("Error uploading product:", error);
+    alert("Failed to add product. Please try again.");
+  }
+};
+
 
   return (
     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-gray-800">
